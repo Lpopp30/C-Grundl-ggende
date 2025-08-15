@@ -1,0 +1,143 @@
+String SvarStorMenu,
+       SvarVariableMenu;
+double Tal1;
+
+
+bool StorLoop = false;
+
+
+
+do
+{
+    Console.WriteLine("Velkommen til ingen ide. Du har flere ting at vælge mellem her i menuen. Skriv venligst talet ud for den du ville vælge." +
+        "\n1.\t  Variabler " +
+        "\n2.\t  Strings   " +
+        "\n3.\t  Aritmetiske udtryk  " +
+        "\n4.\t  Variabler i udtryk  " +
+        "\n5.\t  Boolske variable  " +
+        "\n6.\t  If-else statements  " +
+        "\n7.\t  Switch Case  " +
+        "\n8.\t  Loops " +
+        "\n9.\t  Udvidet kontrolstrukturer  " +
+        "\n10.\t Metoder og instanser " +
+        "\n11.\t Returtyper og parametre " +
+        "\n12.\t Nedarvning " +
+        "\n13.\t Arrays" +
+        "\n14.\t Færdig");
+    SvarStorMenu = Console.ReadLine();
+
+    switch(SvarStorMenu)
+    {
+        case "1":
+        {
+                do
+                {
+                    Console.WriteLine("Her har vi 4 forskellige Opgaver." +
+                        "\n1. \tOpgave 1." +
+                        "\n2. \tOpgave 2." +
+                        "\n3. \tOpgave 3." +
+                        "\n4. \tOpgave 4." +
+                        "\n5. \tTilbage til hovedmenuen");
+                    SvarVariableMenu = Console.ReadLine();
+
+                    switch (SvarVariableMenu)
+                    {
+                        case "1":
+                            {
+                                Console.WriteLine("Hvilken værdi ville du have Tal1 skal have:");
+                                Tal1 = Console.ReadLine();
+                                break;
+                            }
+                        case "2":
+                            {
+                                break;
+                            }
+                        case "3":
+                            {
+                                break;
+                            }
+                        case "4":
+                            {
+                                break;
+                            }
+                        default:
+                            {
+                                Console.WriteLine("Der sket en fejl. Tryk enter og prøv venligst igen");
+                                Console.ReadKey();
+                                Console.Clear();
+                                break;
+                            }
+                    }
+
+                }
+                while (true);
+                break;
+
+        }
+        case "2":
+        {
+            break;
+        }
+        case "3":
+        {
+            break;
+        }
+        case "4":
+        {
+            break;
+        }
+        case "5":
+        {
+            break;
+        }
+        case "6":
+        {
+            break;
+        }
+        case "7":
+        {
+            break;
+        }
+        case "8":
+        {
+            break;
+        }
+        case "9":
+        {
+            break;
+        }
+        case "10":
+        {
+            break;
+        }
+        case "11":
+        {
+            break;
+        }
+        case "12":
+        {
+            break;
+        }
+        case "13":
+        {
+            break;
+        }
+        case "14":
+        {
+                StorLoop = true;
+            break;
+        }
+        default:
+            {
+                Console.WriteLine("Der sket en fejl. Tryk enter og prøv venligst igen");
+                Console.ReadKey();
+                Console.Clear();
+                break;
+            }
+        
+
+    }
+
+}
+while (StorLoop);
+Console.ReadKey();
