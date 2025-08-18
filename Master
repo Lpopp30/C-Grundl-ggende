@@ -1,14 +1,54 @@
+using static System.Net.Mime.MediaTypeNames;
+using System;
+using System.ComponentModel.Design;
+
 String SvarStorMenu,
-       SvarVariableMenu;
-double Tal1;
+       SvarVariableMenu,
+       SvarStringMenu,
+       SvarUdtrykMenu,
+       SvarIfElseMenu,
+       Navn,
+       Arbejde,
+       String1,
+       Brugernavn,
+       Adgangskode,
+       Farve;
+
+double Tal1,
+       Tal2,
+       Penge,
+       Kage,
+       Øl,
+       Pølse,
+       Opg3,
+       Radius,
+       Areal,
+       Double1,
+       Udregning1, 
+       Udregning2, 
+       Udregning3, 
+       Udregning4, 
+       Udregning5,
+       Km;
+
+int Alder,
+    Int1,
+    Int2,
+    Int3,
+    Resultat;
 
 
-bool StorLoop = false;
+bool StorLoop = true,
+     Variabler = true,
+     String = true,
+     Udtryk = true,
+     FarveLoop = false;
 
 
 
 do
 {
+    Console.Clear();
     Console.WriteLine("Velkommen til ingen ide. Du har flere ting at vælge mellem her i menuen. Skriv venligst talet ud for den du ville vælge." +
         "\n1.\t  Variabler " +
         "\n2.\t  Strings   " +
@@ -25,11 +65,13 @@ do
         "\n13.\t Arrays" +
         "\n14.\t Færdig");
     SvarStorMenu = Console.ReadLine();
+    Console.Clear();
 
-    switch(SvarStorMenu)
+    switch (SvarStorMenu)
     {
+        
         case "1":
-        {
+            {
                 do
                 {
                     Console.WriteLine("Her har vi 4 forskellige Opgaver." +
@@ -37,27 +79,87 @@ do
                         "\n2. \tOpgave 2." +
                         "\n3. \tOpgave 3." +
                         "\n4. \tOpgave 4." +
-                        "\n5. \tTilbage til hovedmenuen");
+                        "\n5. \tOpgave 5." +
+                        "\n6. \tTilbage til hovedmenuen");
                     SvarVariableMenu = Console.ReadLine();
 
+                    Console.Clear();
                     switch (SvarVariableMenu)
                     {
                         case "1":
                             {
                                 Console.WriteLine("Hvilken værdi ville du have Tal1 skal have:");
-                                Tal1 = Console.ReadLine();
+                                Tal1 = Convert.ToDouble(Console.ReadLine());
+                                Console.Clear();
+                                Console.WriteLine("Hvilken værdi ville du have Tal2 skal have:");
+                                Tal2 = Convert.ToDouble(Console.ReadLine());
+
+                                Console.WriteLine("Tal1 er " + Tal1 + "." );
+                                Console.WriteLine($"Tal2 er {Tal2}. ");
+                                Console.ReadKey();
                                 break;
                             }
                         case "2":
                             {
+                                Console.WriteLine("Skriv venligst dit navn:");
+                                Navn = Console.ReadLine();
+
+                                Console.WriteLine("Skriv venligst din alder:");
+                                Alder = Convert.ToInt32(Console.ReadLine());
+
+                                Console.WriteLine("Skriv venligst dine antal penge:");
+                                Penge = Convert.ToDouble(Console.ReadLine());
+
+                                Console.WriteLine("Skriv venligst dit arbejde:");
+                                Arbejde = Console.ReadLine();
+
+                                Console.WriteLine($"Jeg hedder {Navn}, er {Alder} år gammel og har tjent {Penge} kr. på at {Arbejde}.");
+                                Console.ReadKey();
                                 break;
                             }
                         case "3":
                             {
+                                Console.WriteLine("Hvor meget koster en kage?");
+                                Kage = Convert.ToDouble(Console.ReadLine());
+                                Console.WriteLine("Hvor meget koster Øl?");
+                                Øl = Convert.ToDouble(Console.ReadLine());
+                                Console.WriteLine("Hvor meget koster en Pølse?");
+                                Pølse = Convert.ToDouble(Console.ReadLine());
+
+                                Opg3 = Kage + Øl + Pølse;
+
+                                Console.WriteLine($"Kage  = {Kage}  kr. \n" +
+                                                  $"Øl    = {Øl}    kr. \n" +
+                                                  $"Pølse = {Pølse} kr. \n" +
+                                                  $"I alt = {Opg3}  kr. \n");
+                                Console.ReadKey();
                                 break;
                             }
                         case "4":
                             {
+                                Console.WriteLine("Hvad hedder du?");
+                                Navn = Console.ReadLine();
+                                Console.WriteLine("Hvor gammel er du?");
+                                Alder = Convert.ToInt32(Console.ReadLine());
+
+                                Console.WriteLine($"Jeg hedder {Navn} og er {Alder} år gammel.");
+                                Console.ReadKey();
+                                break;
+                            }
+                        case "5":
+                            {
+                                Console.WriteLine("Indtast venligts radiusen:");
+                                Radius = Convert.ToDouble(Console.ReadLine());
+
+                                Areal = Math.PI * Math.Pow(Radius, 2);
+
+                                Console.WriteLine($"Arealet af din cirkel er {Areal}. Med en radius på {Radius}.");
+                                Console.ReadKey();
+                                break;
+                            }
+                        case "6":
+                            {
+                                Variabler = false;
                                 break;
                             }
                         default:
@@ -70,63 +172,366 @@ do
                     }
 
                 }
-                while (true);
+                while (Variabler);
                 break;
 
-        }
+            }
         case "2":
-        {
-            break;
-        }
+            {
+                do
+                {
+                    Console.WriteLine("Der er 2 opgaver. Vælg venligst en. " +
+                        "\n 1. Opgave 1." +
+                        "\n 2. Opgave 2." +
+                        "\n 3. Tilbage til hovedmenuen.");
+                    SvarStringMenu = Console.ReadLine();
+                    if (SvarStringMenu == "1")
+                    {
+                        Console.WriteLine("Skriv venligst en helt tal ind:");
+                        Int1 = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Skriv venligst en string ind:");
+                        String1 = Console.ReadLine();
+                        Console.WriteLine("Skriv venligst en double ind:");
+                        Double1 = Convert.ToDouble(Console.ReadLine());
+
+                        Console.WriteLine($"Int    = {Int1}. \n" +
+                                          $"String = {String1}. \n" +
+                                          $"Double = {Double1}.");
+
+                        Console.WriteLine("Giv Int en ny værdi:");
+                        Int1 = Convert.ToInt32(Console.ReadLine());
+
+                        Console.WriteLine($"Int    = {Int1}. \n" +
+                                          $"String = {String1}. \n" +
+                                          $"Double = {Double1}.");
+                        Console.ReadKey();
+
+                    }
+                    else if (SvarStringMenu == "2")
+                    { 
+                        double Start = 200.50;
+                        string midt = "Jeg har";
+                        string slut = "kr. i banken";
+
+                        Console.WriteLine(Start + midt + slut);
+                        Console.ReadKey();
+
+                    }
+                    else if (SvarStringMenu == "3")
+                    {
+                        String = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Der sket en fejl. Tryk enter og prøv venligst igen");
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
+
+
+                }
+                while (String);
+                break;
+            }
         case "3":
-        {
-            break;
-        }
-        case "4":
-        {
-            break;
-        }
+            {
+                Udregning1 = 2 + 1 * 2;
+                Udregning2 = (2 + 1) * 2;
+                Udregning3 = 5 / 2;
+                Udregning4 = 8 % 3;
+                Udregning5 = 1 - 5;
+                Console.WriteLine($"2 + 1 * 2 = {Udregning1} \n" +
+                                  $"(2 + 1) * 2 = {Udregning2} \n " +
+                                  $"5 / 2 =  {Udregning3} \n" +
+                                  $"8 % 3 = {Udregning4} \n" +
+                                  $"1 - 5 = {Udregning5}" );
+                Console.ReadKey();
+                break;
+            }
+        /*case "4":
+            {
+                do
+                {
+                    Console.WriteLine("Der er to opgaver her. \n" +
+                                      "1. Opgave 1 \n" +
+                                      "2. Opgave 2 \n" +
+                                      "3. Tilbage til hovedmenuen");
+                    SvarUdtrykMenu = Console.ReadLine();
+
+                    switch (SvarUdtrykMenu)
+                    {
+                        case "1":
+                            {
+                                Console.WriteLine("Skriv et helt tal:");
+                                Int1 = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine("Skriv et helt tal:");
+                                Int2 = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine("Skriv et helt tal:");
+                                Int3 = Convert.ToInt32(Console.ReadLine());
+
+                                Resultat = Int1 + Int2 * Int3;
+                                Console.WriteLine(Resultat);
+                                Console.ReadKey();
+                                break;
+                            }
+                        case "2":
+                            {
+                               
+                                break;
+                            }
+                        case "3":
+                            {
+                                Udtryk = false;
+                                break;
+                            }
+                        default:
+                            {
+                                Console.WriteLine("Der sket en fejl. Tryk enter og prøv venligst igen");
+                                Console.ReadKey();
+                                Console.Clear();
+                                break;
+                            }
+
+                    }
+                }
+                while (Udtryk);
+                break;
+
+            } 
         case "5":
-        {
-            break;
-        }
+            {
+
+                break;
+            }*/
         case "6":
-        {
-            break;
-        }
+            {
+                do
+                {
+                    Console.WriteLine("Her har vi 6 opgaver at vælge mellem. " +
+                        "\n1. Opgave 1 " +
+                        "\n2. Opgave 2 " +
+                        "\n3. Opgave 3 " +
+                        "\n4. Opgave 4 " +
+                        "\n5. Opgave 5 " +
+                        "\n6. Opgave 6 " +
+                        "\n7. Tilbage til hovedmenuen");
+                    SvarIfElseMenu = Console.ReadLine();
+
+                    switch (SvarIfElseMenu)
+                    {
+                        case "1":
+                            {
+                                Int1 = 42;
+                                Int2 = 64;
+                                Resultat = Int1 + Int2;
+                                if (Resultat > 100)
+                                {
+                                    Console.WriteLine("Summen er større end 100!");
+                                    Console.ReadKey();
+                                }
+                                else if (Resultat < 100)
+                                {
+                                    Console.WriteLine("Summen er mindre end 100.");
+                                    Console.ReadKey();
+                                }
+                                else if (Resultat == 100)
+                                {
+                                    Console.WriteLine("Summen er 100.");
+                                    Console.ReadKey();
+                                }
+                                else
+                                {
+                                    Console.WriteLine("fejl");
+                                    Console.ReadKey();
+                                }
+                                break;
+                            }
+                        case "2":
+                            {
+                                Console.WriteLine("Hvor gammel er du?");
+                                Alder = Convert.ToInt32( Console.ReadLine());  
+
+                                if (Alder > 57)
+                                {
+                                    Console.WriteLine("Du for gammel");
+                                    Console.ReadKey();
+                                }
+                                else if (Alder < 57 || Alder == 57)
+                                {
+                                    Console.WriteLine("Du er ikke for gammel");
+                                    Console.ReadKey();
+                                }
+                                break;
+                            }
+                        case "3":
+                            {
+                                Console.WriteLine("Hvor gammel er du?");
+                                Alder = Convert.ToInt32(Console.ReadLine());
+
+                                if (Alder > 60)
+                                {
+                                    Console.WriteLine("Du for gammel");
+                                    Console.ReadKey();
+                                }
+                                else if (Alder < 60 || Alder > 50)
+                                {
+                                    Console.WriteLine("Du er hverken for gammel eller for ung");
+                                    Console.ReadKey();
+                                }
+                                else if (Alder < 50)
+                                {
+                                    Console.WriteLine("Du for ung");
+                                    Console.ReadKey();
+                                }
+                                break;
+                            }
+                        case "4":
+                            {
+                                Console.WriteLine("Skriv venligst dit navn:");
+                                Navn = Console.ReadLine();
+
+                                Console.WriteLine("Skriv venligst dit brugernavn");
+                                Brugernavn = Console.ReadLine();
+
+                                Console.WriteLine("Skriv veligst din adgangskode");
+                                Adgangskode = Console.ReadLine();
+
+                                if (Navn == Adgangskode)
+                                {
+                                    Console.WriteLine("Velkommen" + Brugernavn);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Brugernavn eller Adgangskode forkert");
+                                }
+
+                                break;
+                            }
+                        case "5":
+                            {
+                                Console.WriteLine("Hvor mang ekm køre du hver dag til og fra arbejde");
+                                Km = Convert.ToDouble(Console.ReadLine());
+
+                                if (Km < 24)
+                                {
+                                    
+                                    Console.WriteLine("Du får ikke noget fradrag");
+                                }
+                                else if (25 < Km && Km <120)
+                                {
+                                    Udregning1 = (Km - 24) * 1.93;
+                                    Console.WriteLine($"Du for 1.93 kr. pr. km i fradrag. Da du kører {Km} om dagen får du {Udregning1} kr. i fradrag.");
+                                }
+                                else if (Km > 121)
+                                {
+                                    Udregning1 = 96 * 1.93 + (Km - 120) * 0.97;
+                                    Console.WriteLine($"Du for 0,97 kr. pr. km i fradrag. Da du kører {Km} om dagen får du {Udregning1} kr. i fradrag.");
+                                }
+
+                                break;
+                            }
+                        case "6":
+                            {
+                                do
+                                {
+                                    FarveLoop = false;
+                                    Console.WriteLine("Hvilken farve kan du best lide mellem. " +
+                                        "\nRød" +
+                                        "\nGrøn" +
+                                        "\nBlå" +
+                                        "\nGul");
+                                    Farve = Console.ReadLine().ToUpper();
+
+                                    if (Farve == "RØD")
+                                    {
+
+                                    }
+                                    else if (Farve == "GRØN")
+                                    {
+
+                                    }
+                                    else if (Farve == "BLÅ")
+                                    {
+
+                                    }
+                                    else if (Farve == "GUL")
+                                    {
+
+                                    }
+                                    else
+                                    {
+                                        FarveLoop = true;
+                                        Console.WriteLine("Det forstod jeg ikke. Prøv venligst igen");
+                                    }
+
+                                    Console.WriteLine("Skriv Venligst din alder");
+                                    Alder = Convert.ToInt32(Console.ReadLine());
+
+                                    if (Alder < 18)
+                                    {
+                                        Console.WriteLine("Velkommmen til sodavandsbaren!");
+                                    }
+                                    else if (Alder > 18 || Alder == 18)
+                                    {
+                                        Console.WriteLine("Velkommen til cocktailbaren");
+                                    }
+                                }
+                                while (FarveLoop);
+                                break;
+                            }
+                        case "7":
+                            {
+                                break;
+                            }
+                        default:
+                            {
+                                Console.WriteLine("Der sket en fejl. Tryk enter og prøv venligst igen");
+                                Console.ReadKey();
+                                Console.Clear();
+                                break;
+                            }
+
+
+
+                    }
+
+                }
+                while (true);
+                break;
+            }
         case "7":
-        {
-            break;
-        }
+            {
+                break;
+            }
         case "8":
-        {
-            break;
-        }
+            {
+                break;
+            }
         case "9":
-        {
-            break;
-        }
+            {
+                break;
+            }
         case "10":
-        {
-            break;
-        }
+            {
+                break;
+            }
         case "11":
-        {
-            break;
-        }
+            {
+                break;
+            }
         case "12":
-        {
-            break;
-        }
+            {
+                break;
+            }
         case "13":
-        {
-            break;
-        }
+            {
+                break;
+            }
         case "14":
-        {
-                StorLoop = true;
-            break;
-        }
+            {
+                StorLoop = false;
+                break;
+            }
         default:
             {
                 Console.WriteLine("Der sket en fejl. Tryk enter og prøv venligst igen");
@@ -134,7 +539,7 @@ do
                 Console.Clear();
                 break;
             }
-        
+
 
     }
 
