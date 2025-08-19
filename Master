@@ -7,6 +7,7 @@ String SvarStorMenu,
        SvarStringMenu,
        SvarUdtrykMenu,
        SvarIfElseMenu,
+       SvarSwitchMenu,
        Navn,
        Arbejde,
        String1,
@@ -42,7 +43,9 @@ bool StorLoop = true,
      Variabler = true,
      String = true,
      Udtryk = true,
-     FarveLoop = false;
+     FarveLoop = false,
+     IfElse = true,
+     SwitchLoop = true;
 
 
 
@@ -481,6 +484,7 @@ do
                             }
                         case "7":
                             {
+                                IfElse = false;
                                 break;
                             }
                         default:
@@ -496,11 +500,66 @@ do
                     }
 
                 }
-                while (true);
+                while (IfElse);
                 break;
             }
         case "7":
             {
+                do
+                {
+                    Console.WriteLine("Her har vi 2 opgaver at vælge mellem. " +
+                            "\n1. Opgave 1 " +
+                            "\n2. Opgave 2 " +
+                            "\n3. Tilbage til hovedmenuen");
+                    SvarSwitchMenu = Console.ReadLine();
+
+                    switch (SvarSwitchMenu)
+                    {
+                        case "1":
+                            {
+                                Console.WriteLine("Indtast et tal mellem 1-6");
+                                Tal1 = Convert.ToInt32(Console.ReadLine());
+
+                                switch (Tal1)
+                                {
+                                    case '1,2':
+                                        {
+                                            break;
+                                        }
+
+                                    case '4':
+                                        {
+                                            Console.WriteLine("TILLYKKE DU HAR VUNDET");
+                                            break;
+                                        }
+
+                                    default:
+                                        {
+                                            break;
+                                        }
+                                }
+
+                                break;
+                            }
+                        case "2":
+                            {
+                                break;
+                            }
+                        case "3":
+                            {
+                                SwitchLoop = false;
+                                break;
+                            }
+                        default:
+                            {
+                                Console.WriteLine("Der sket en fejl. Tryk enter og prøv venligst igen");
+                                Console.ReadKey();
+                                Console.Clear();
+                                break;
+                            }
+                    }
+                }
+                while (SwitchLoop);
                 break;
             }
         case "8":
