@@ -8,6 +8,7 @@ String SvarStorMenu,
        SvarUdtrykMenu,
        SvarIfElseMenu,
        SvarSwitchMenu,
+       SvarLoopMenu,
        Navn,
        Arbejde,
        String1,
@@ -25,17 +26,17 @@ double Tal1,
        Radius,
        Areal,
        Double1,
-       Udregning1, 
-       Udregning2, 
-       Udregning3, 
-       Udregning4, 
+       Udregning1,
+       Udregning2,
+       Udregning3,
+       Udregning4,
        Udregning5,
        Km;
 
 int Alder,
     Int1,
     Int2,
-    Int3,
+    i = 0,
     Resultat;
 
 
@@ -45,7 +46,8 @@ bool StorLoop = true,
      Udtryk = true,
      FarveLoop = false,
      IfElse = true,
-     SwitchLoop = true;
+     SwitchLoop = true,
+     LoopsLoop = true;
 
 
 
@@ -72,7 +74,7 @@ do
 
     switch (SvarStorMenu)
     {
-        
+
         case "1":
             {
                 do
@@ -97,7 +99,7 @@ do
                                 Console.WriteLine("Hvilken værdi ville du have Tal2 skal have:");
                                 Tal2 = Convert.ToDouble(Console.ReadLine());
 
-                                Console.WriteLine("Tal1 er " + Tal1 + "." );
+                                Console.WriteLine("Tal1 er " + Tal1 + ".");
                                 Console.WriteLine($"Tal2 er {Tal2}. ");
                                 Console.ReadKey();
                                 break;
@@ -211,7 +213,7 @@ do
 
                     }
                     else if (SvarStringMenu == "2")
-                    { 
+                    {
                         double Start = 200.50;
                         string midt = "Jeg har";
                         string slut = "kr. i banken";
@@ -247,7 +249,7 @@ do
                                   $"(2 + 1) * 2 = {Udregning2} \n " +
                                   $"5 / 2 =  {Udregning3} \n" +
                                   $"8 % 3 = {Udregning4} \n" +
-                                  $"1 - 5 = {Udregning5}" );
+                                  $"1 - 5 = {Udregning5}");
                 Console.ReadKey();
                 break;
             }
@@ -352,7 +354,7 @@ do
                         case "2":
                             {
                                 Console.WriteLine("Hvor gammel er du?");
-                                Alder = Convert.ToInt32( Console.ReadLine());  
+                                Alder = Convert.ToInt32(Console.ReadLine());
 
                                 if (Alder > 57)
                                 {
@@ -417,10 +419,10 @@ do
 
                                 if (Km < 24)
                                 {
-                                    
+
                                     Console.WriteLine("Du får ikke noget fradrag");
                                 }
-                                else if (25 < Km && Km <120)
+                                else if (25 < Km && Km < 120)
                                 {
                                     Udregning1 = (Km - 24) * 1.93;
                                     Console.WriteLine($"Du for 1.93 kr. pr. km i fradrag. Da du kører {Km} om dagen får du {Udregning1} kr. i fradrag.");
@@ -447,19 +449,23 @@ do
 
                                     if (Farve == "RØD")
                                     {
-
+                                        Console.BackgroundColor = ConsoleColor.Red;
+                                        Console.Clear();
                                     }
                                     else if (Farve == "GRØN")
                                     {
-
+                                        Console.BackgroundColor = ConsoleColor.Green;
+                                        Console.Clear();
                                     }
                                     else if (Farve == "BLÅ")
                                     {
-
+                                        Console.BackgroundColor = ConsoleColor.Blue;
+                                        Console.Clear();
                                     }
                                     else if (Farve == "GUL")
                                     {
-
+                                        Console.BackgroundColor = ConsoleColor.Yellow;
+                                        Console.Clear();
                                     }
                                     else
                                     {
@@ -480,6 +486,9 @@ do
                                     }
                                 }
                                 while (FarveLoop);
+                                Console.ReadKey();
+                                Console.BackgroundColor = ConsoleColor.Black;
+                                Console.Clear();
                                 break;
                             }
                         case "7":
@@ -522,19 +531,28 @@ do
 
                                 switch (Tal1)
                                 {
-                                    case '1,2':
+                                    case double a when a > 0 && a <=3 || a>=5 && a <=6:
                                         {
+                                            Console.WriteLine($"Du har skrevet tallet {Tal1}");
+                                            Console.WriteLine("Du kommer ud til Switch menuen igen. Tryk enter.");
+                                            Console.ReadKey();
                                             break;
                                         }
 
-                                    case '4':
+                                    case 4:
                                         {
+                                            Console.SetCursorPosition(50, 13);
                                             Console.WriteLine("TILLYKKE DU HAR VUNDET");
                                             break;
                                         }
 
                                     default:
                                         {
+                                            Console.WriteLine("Du har tastet forkert. Tallet skal være mellem 1 og 6");
+                                            Thread.Sleep(10000);
+                                            Console.Clear();
+                                            SwitchLoop = false;
+                                            StorLoop = false;
                                             break;
                                         }
                                 }
@@ -543,6 +561,62 @@ do
                             }
                         case "2":
                             {
+                                Console.WriteLine("Vælg en drink. Skriv prisen på drinken for at vælge" +
+                                    "\n Isbjørn          \t 1 kr." +
+                                    "\n Champagnebrus    \t 2 kr." +
+                                    "\n Tequiala Sunrise \t 3 kr." +
+                                    "\n Mojito           \t 4 kr." +
+                                    "\n Brandbil         \t 5 kr." +
+                                    "\n Filur            \t 6 kr.");
+                                String1 = Console.ReadLine();
+
+                                switch (String1)
+                                {
+                                    case "1":
+                                        {
+                                            Console.WriteLine($"Du har valgt isbjørn denne drink koster {String1}");
+                                            Thread.Sleep(11000);
+                                            break;
+                                        }
+                                    case "2":
+                                        {
+                                            Console.WriteLine($"Du har valgt Champagnebrus denne drink koster {String1}");
+                                            Thread.Sleep(11000);
+                                            break;
+                                        }
+                                    case "3":
+                                        {
+                                            Console.WriteLine($"Du har valgt Tequila Sunrise denne drink koster {String1}");
+                                            Thread.Sleep(11000);
+                                            break;
+                                        }
+                                    case "4":
+                                        {
+                                            Console.WriteLine($"Du har valgt Mojito denne drink koster {String1}");
+                                            Thread.Sleep(11000);
+                                            break;
+                                        }
+                                    case "5":
+                                        {
+                                            Console.WriteLine($"Du har valgt Barandbil denne drink koster {String1}");
+                                            Thread.Sleep(11000);
+                                            break;
+                                        }
+                                    case "6":
+                                        {
+                                            Console.WriteLine($"Du har valgt Filur denne drink koster {String1}");
+                                            Thread.Sleep(11000);
+                                            break;
+                                        }
+                                    default:
+                                        {
+                                            Console.WriteLine("Der sket en fejl. Tryk enter og prøv venligst igen");
+                                            Console.ReadKey();
+                                            
+                                            break;
+                                        }
+                                }
+                                Console.Clear();
                                 break;
                             }
                         case "3":
@@ -555,6 +629,7 @@ do
                                 Console.WriteLine("Der sket en fejl. Tryk enter og prøv venligst igen");
                                 Console.ReadKey();
                                 Console.Clear();
+                                
                                 break;
                             }
                     }
@@ -564,6 +639,201 @@ do
             }
         case "8":
             {
+                do
+                {
+                    Console.WriteLine("Her har vi 8 opgaver at vælge mellem. " +
+                            "\n1. Opgave 1 " +
+                            "\n2. Opgave 2 " +
+                            "\n3. Opgave 3 " +
+                            "\n4. Opgave 4 " +
+                            "\n5. Opgave 5 " +
+                            "\n6. Opgave 6 " +
+                            "\n7. Opgave 7 " +
+                            "\n8. Opgave 8 " +
+                            "\n9. Tilbage til hovedmenuen");
+                    SvarLoopMenu = Console.ReadLine();
+
+                    Console.Clear();
+                    switch (SvarLoopMenu)
+                    {
+                        case "1":
+                            {
+                                /*
+                                for (int i = 1; i <= 10; i++)
+                                {
+                                    Console.WriteLine(i);
+                                }
+                                Console.ReadKey();*/
+
+                                do
+                                {
+                                   
+                                    
+                                    Console.WriteLine(i);
+                                    i++;
+                                }
+                                while(11 > i);
+                                Console.ReadKey();
+                                break;
+                            }
+                        case "2":
+                            {
+                                /*for (int i = 100; i >= 1; i--)
+                                {
+                                    Console.WriteLine(i);
+                                }
+                                Console.ReadKey();*/
+
+                                i = 100;
+                                do
+                                {
+                                    
+                                    Console.WriteLine(i);
+                                    i--;
+                                }
+                                while (i != 0);
+                                Console.ReadKey();
+                                break;
+                            }
+                        case "3":
+                            {
+                                for (i = 1; i <= 10; i++)
+                                {
+                                    
+                                    Console.WriteLine(i +"\t * \t 5 \t = \t "+i * 5);
+                                }
+                                Console.ReadKey();
+                                break;
+                            }
+                        case "4":
+                            {
+                                for (i = 1; i <= 10; i++)
+                                {
+
+                                    Console.WriteLine(i + "\t * \t 7 \t = \t " + i * 7);
+                                }
+                                Console.ReadKey();
+                                break;
+                            }
+                        case "5":
+                            {
+                                Console.WriteLine("Hvilken tabel ville du have:");
+                                Int1 = Convert.ToInt32(Console.ReadLine());
+
+                                for (i = 1; i <= 10; i++)
+                                {
+
+                                    Console.WriteLine(i + "\t * \t " + Int1 + " \t = \t " + i * Int1);
+                                }
+                                Console.ReadKey();
+                                
+                                break;
+                            }
+                        case "6":
+                            {
+                                for (i=4; i<=8;)
+                                {
+                                    Console.SetCursorPosition(21, i);
+                                    Console.WriteLine("__________");
+                                    i = i + i;
+                                }
+                                        
+                                        for (i = 5; i <= 8; i++)
+                                        {
+                                            Console.SetCursorPosition(20,i);
+                                            Console.WriteLine("|");
+                                        }
+                                    
+                                        
+                                        for (i = 8; i >= 5; i--)
+                                        {
+                                            Console.SetCursorPosition(30, i);
+                                            Console.WriteLine("|");
+                                        }
+                                   
+                                
+                                Console.ReadKey();
+                                break;
+                            }
+                        case "7":
+                            {
+                                for (i = 4; i <= 8;)
+                                {
+                                    Console.SetCursorPosition(21, i);
+                                    Console.WriteLine("__________");
+                                    i = i + i;
+                                }
+
+                                for (i = 5; i <= 8; i++)
+                                {
+                                    Console.SetCursorPosition(20, i);
+                                    Console.WriteLine("|");
+                                }
+
+
+                                for (i = 8; i >= 5; i--)
+                                {
+                                    Console.SetCursorPosition(30, i);
+                                    Console.WriteLine("|");
+                                }
+
+                                Console.SetCursorPosition(21,6);
+                                Console.WriteLine("dit navn");
+                                Console.ReadKey();
+                                break;
+                            }
+                        case "8":
+                            {
+                                Console.WriteLine("Hvor stor skal ramme størelsen være? Indtast et tal");
+                                Int1 = Convert.ToInt32(Console.ReadLine());
+                                
+                                Int2 = Int1 + 4;
+                                for (i = 4; i <= Int1;)
+                                {
+                                    
+                                    for (int a = 20; a <= Int1; a++)
+                                    {
+                                        
+                                        Console.SetCursorPosition(a, i);
+                                        Console.WriteLine("_");
+                                    }
+                                    
+                                    i = i + Int2;
+                                    Int1 = Int2 + i;
+                                }
+                                Int1 = Int1 + 20;
+                                for (i = 5; i <= Int2; i++)
+                                {
+                                    Console.SetCursorPosition(20, i);
+                                    Console.WriteLine("|");
+                                }
+
+
+                                for (i = Int2; i >= 5; i--)
+                                {
+                                    Console.SetCursorPosition(Int2, i);
+                                    Console.WriteLine("|");
+                                }
+
+                                Console.SetCursorPosition(21, 6);
+                                Console.WriteLine("dit navn");
+                                Console.ReadKey();
+                                break;
+                            }
+                        case "9":
+                            {
+                                break;
+                            }
+                        default:
+                            {
+                                Console.WriteLine("Der sket en fejl. Tryk enter og prøv venligst igen");
+                                Console.ReadKey();
+                                break;
+                            }
+                    }
+                    Console.Clear();
+                }
+                while (LoopsLoop);
                 break;
             }
         case "9":
@@ -604,4 +874,4 @@ do
 
 }
 while (StorLoop);
-Console.ReadKey();
+//Console.ReadKey();
