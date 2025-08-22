@@ -9,6 +9,9 @@ String SvarStorMenu,
        SvarIfElseMenu,
        SvarSwitchMenu,
        SvarLoopMenu,
+       SvarKontrolMenu,
+       SvarMetoderMenu,
+       SvarReturMenu,
        Navn,
        Arbejde,
        String1,
@@ -37,7 +40,10 @@ int Alder,
     Int1,
     Int2,
     i = 0,
-    Resultat;
+    Resultat,
+    Indkomst,
+    MellemSkat,
+    TopSkat;
 
 
 bool StorLoop = true,
@@ -47,7 +53,10 @@ bool StorLoop = true,
      FarveLoop = false,
      IfElse = true,
      SwitchLoop = true,
-     LoopsLoop = true;
+     LoopsLoop = true,
+     KontrolLoop = true,
+     MetoderLoop = true,
+     ReturLoop = true;
 
 
 
@@ -414,7 +423,7 @@ do
                             }
                         case "5":
                             {
-                                Console.WriteLine("Hvor mang ekm køre du hver dag til og fra arbejde");
+                                Console.WriteLine("Hvor mange km køre du hver dag til og fra arbejde");
                                 Km = Convert.ToDouble(Console.ReadLine());
 
                                 if (Km < 24)
@@ -786,42 +795,55 @@ do
                             {
                                 Console.WriteLine("Hvor stor skal ramme størelsen være? Indtast et tal");
                                 Int1 = Convert.ToInt32(Console.ReadLine());
-                                
-                                Int2 = Int1 + 4;
-                                for (i = 4; i <= Int1;)
+
+                                Console.WriteLine("Hvad hedder du");
+                                Navn = Console.ReadLine();
+
+                                Int2 = Int1 + 5;
+
+                                for (i = 4; i <= Int2;)
                                 {
-                                    
+                                    Int1 = 20 + Int1;
                                     for (int a = 20; a <= Int1; a++)
                                     {
                                         
                                         Console.SetCursorPosition(a, i);
-                                        Console.WriteLine("_");
+                                        Console.Write("_");
                                     }
+
+                                    Int1 = Int1 - 20;
+                                    i = i + Int1;
                                     
-                                    i = i + Int2;
-                                    Int1 = Int2 + i;
                                 }
-                                Int1 = Int1 + 20;
+                                
+                                
                                 for (i = 5; i <= Int2; i++)
                                 {
                                     Console.SetCursorPosition(20, i);
-                                    Console.WriteLine("|");
+                                    Console.Write("|");
                                 }
 
 
                                 for (i = Int2; i >= 5; i--)
                                 {
+                                    Int2 = 15 + Int2;
                                     Console.SetCursorPosition(Int2, i);
-                                    Console.WriteLine("|");
+                                    Console.Write("|");
+                                    Int2 = Int2 - 15;
                                 }
+                                
+                                Int2 = Int1 / 2 + 4;
 
-                                Console.SetCursorPosition(21, 6);
-                                Console.WriteLine("dit navn");
+                                
+
+                                Console.SetCursorPosition(Int1, Int2);
+                                Console.WriteLine(Navn);
                                 Console.ReadKey();
                                 break;
                             }
                         case "9":
                             {
+                                LoopsLoop = false;
                                 break;
                             }
                         default:
@@ -838,15 +860,256 @@ do
             }
         case "9":
             {
+                do
+                {
+                    Console.WriteLine("4 opgave" +
+                        "\n 1. \t Opgave 1" +
+                        "\n 2. \t Opgave 2" +
+                        "\n 3. \t Opgave 3" +
+                        "\n 4. \t Opgave 4" +
+                        "\n 5. \t Tilbage til hovedmenuen");
+                    SvarKontrolMenu = Console.ReadLine();
+
+                    switch (SvarKontrolMenu)
+                    {
+                        case "1":
+                            {
+                                for (i = 1; i != 10;i++)
+                                {
+                                    Int1 = 3 * i;
+                                    Console.WriteLine(Int1);
+                                    if (Int1 == 21)
+                                    {
+                                        i = 9;
+                                    }
+                                }
+                                Console.WriteLine("Loopet er nu stoppet");
+                                Console.ReadKey();
+                                break;
+                            }
+                        case "2":
+                            {
+                                Console.WriteLine("Hvor mang ekm køre du hver dag til og fra arbejde");
+                                Km = Convert.ToDouble(Console.ReadLine());
+
+                                if (Km < 24)
+                                {
+
+                                    Console.WriteLine("Du får ikke noget fradrag");
+                                }
+                                else if (25 < Km && Km < 100)
+                                {
+                                    Udregning1 = (Km - 24) * 1.54;
+                                    Console.WriteLine($"Du for 1.54 kr. pr. km i fradrag. Da du kører {Km} om dagen får du {Udregning1} kr. i fradrag.");
+                                }
+                                else if (Km > 101)
+                                {
+                                    Udregning1 = 100 * 1.54 + (Km - 100) * 0.77;
+                                    Console.WriteLine($"Du for 0,77 kr. pr. km i fradrag. Da du kører {Km} om dagen får du {Udregning1} kr. i fradrag.");
+                                }
+
+                                
+                                Console.ReadKey();
+                                break;
+                            }
+                        case "3":
+                            {
+                                Console.WriteLine("Hvad er din indkomst?");
+                                Indkomst = Convert.ToInt32(Console.ReadLine());
+
+                                if (Indkomst < 42000)
+                                {
+                                    Console.WriteLine("Ingen skat. Ja tak");
+                                    Console.WriteLine($"Du får {Indkomst} kr. i udbetaling");
+                                }
+                                else if (42000 < Indkomst && Indkomst < 280000)
+                                {
+                                    Console.WriteLine("Bundskat. Den er på 30%");
+                                    Indkomst = (Indkomst / 100)*70;
+                                    Console.WriteLine($"Du får {Indkomst} kr. i udbetaling"); 
+                                }
+                                else if (280000 < Indkomst && Indkomst < 390000)
+                                {
+                                    Console.WriteLine("Du skal både betale bundskat og mellemskat. 30 % og 6%");
+                                    MellemSkat = Indkomst - 280000;
+                                    Indkomst = Indkomst - MellemSkat;
+                                    MellemSkat = (MellemSkat / 100) * 94;
+                                    Indkomst = (Indkomst / 100) * 70;
+                                    Indkomst = MellemSkat + Indkomst;
+                                    Console.WriteLine($"Du får {Indkomst} kr. i udbetaling");
+                                }
+                                else if (390000 < Indkomst )
+                                {
+                                    Console.WriteLine("Du skal både betale bundskat, mellemskat og topskat. 30 %, 6% og 15%");
+                                    TopSkat = Indkomst - 390000;
+                                    Indkomst = Indkomst - TopSkat;
+                                    MellemSkat = Indkomst - 280000;
+                                    Indkomst = Indkomst - MellemSkat;
+                                    TopSkat = (TopSkat / 100) * 85;
+                                    MellemSkat = (MellemSkat / 100) * 94;
+                                    Indkomst = (Indkomst / 100) * 70;
+                                    Indkomst = MellemSkat + Indkomst + TopSkat;
+                                    Console.WriteLine($"Du får {Indkomst} kr. i udbetaling");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Er du okay");
+                                }
+
+                                Console.ReadKey();
+                                break;
+                            }
+                        case "4":
+                            {
+                                Console.WriteLine("Hvor mange penge står der på kontoen");
+                                Penge = Convert.ToDouble(Console.ReadLine());
+
+
+                                if (Penge < 25000)
+                                {
+                                    Penge = (Penge / 100) * 100.25;
+                                }
+                                else if (25000 < Penge && Penge < 150000 )
+                                {
+                                    Penge = (Penge / 100) * 101.25;
+                                }
+                                else if (150000 < Penge)
+                                {
+                                    Double1 = Penge - 150000;
+                                    Penge = 150000 - Double1;
+                                    Double1 = (Double1 / 100) * 100.5;
+                                    Penge = (Penge / 100) * 101.25;
+                                    Penge = Penge + Double1;
+                                }
+
+                                Console.WriteLine($"Her er hvad du får {Penge}", Penge.ToString("0.00"));
+
+                                Console.ReadKey();
+                                break;
+                            }
+                        case "5":
+                            {
+                                Console.ReadKey();
+                                break;
+                            }
+                        default:
+                            {
+                                Console.WriteLine("Der sket en fejl. Tryk enter og prøv venligst igen");
+                                Console.ReadKey();
+                                break;
+                            }
+                    }
+
+                }
+                while (KontrolLoop);
                 break;
             }
         case "10":
             {
+                do
+                {
+                    Console.WriteLine("2 opgave" +
+                    "\n 1. \t Opgave 1" +
+                    "\n 2. \t Opgave 2" +
+                    "\n 3. \t Tilbage til hovedmenuen");
+                    SvarMetoderMenu = Console.ReadLine();
+                    switch (SvarMetoderMenu)
+                    {
+                        case "1":
+                            {
+                                Bog bog = new Bog(30, "Ana Huang");
+                                bog.PrintInfo();
+
+                                Console.WriteLine("Forfatteren er " + bog.Forfatter);
+                                Console.WriteLine("Prisen er " + bog.Pris);
+
+
+                                Console.ReadKey();
+                                break;
+                            }
+                        case "2":
+                            {
+                                
+                                Console.WriteLine("Hvormange penge har du");
+                                Int1 = Convert.ToInt32(Console.ReadLine());
+
+                                Bog Pengebog = new Bog(100, "Elle Kennnedy");
+
+                              
+
+                                if (Pengebog.HarRåd(Int1) == true)
+                                {
+                                    Console.WriteLine("Jeg har råd");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Jeg har desværre ikke råd");
+                                }
+
+                                Console.ReadKey();
+                                break;
+                            }
+                        case "3":
+                            {
+                                MetoderLoop = false;
+                                Console.ReadKey();
+                                break;
+                            }
+                        default:
+                            {
+                                Console.WriteLine("Der sket en fejl. Tryk enter og prøv venligst igen");
+                                Console.ReadKey();
+                                break;
+                            }
+                    }
+                }
+                while (MetoderLoop) ;
                 break;
             }
         case "11":
             {
-                break;
+                do
+                {
+                    Console.WriteLine("2 opgave" +
+                    "\n 1. \t Opgave 1" +
+                    "\n 2. \t Opgave 2" +
+                    "\n 3. \t Tilbage til hovedmenuen");
+                    SvarReturMenu = Console.ReadLine();
+
+                    switch (SvarReturMenu)
+                    {
+                        case "1":
+                            {
+                                Bil Lynet = new Bil();
+                                break;
+                            }
+                        case "2":
+                            {
+
+                                break;
+                            }
+                        case "3":
+                            {
+                                ReturLoop = false;
+                                Console.ReadKey();
+                                break;
+                            }
+                        default:
+                            {
+                                Console.WriteLine("Der sket en fejl. Tryk enter og prøv venligst igen");
+                                Console.ReadKey();
+                                break;
+                            }
+                    }
+
+
+
+
+
+
+                }
+                while (ReturLoop);
+                    break;
             }
         case "12":
             {
@@ -875,3 +1138,65 @@ do
 }
 while (StorLoop);
 //Console.ReadKey();
+
+
+public class Bog
+
+{
+    public string Forfatter { get; set; }
+    public int Pris { get; set; }
+    public Bog(int pris, string forfatter)
+    {
+        Forfatter = forfatter;
+        Pris = pris;
+    }
+    
+    public void PrintInfo()
+    {
+        Console.WriteLine("Jeg er en bog.");
+    }
+
+    public bool HarRåd(int opsparing)
+    {
+        return opsparing >= Pris;
+    }
+
+
+}
+
+public class Bil
+{
+    public bool Motor { get; set; }
+    public bool DieselBil { get; set; }
+    public int Benzin { get; set; }
+
+    public Bil (bool motor, bool dieselbil, int benzin)
+    {
+        Motor = motor;
+        DieselBil = dieselbil;
+        Benzin = benzin;
+    }
+
+    public bool MotorTændt()
+    {
+        return Motor = true;
+    }
+    public bool MotorSluk()
+    {
+        return Motor = false;
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
